@@ -1,25 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import PeliculaIndividual from "./peliculas/PeliculaIndividual";
+import { pelicula } from "./peliculas/peliculas.model";
 
 function App() {
+  const peliculaPrueba: pelicula = {
+    id: 1,
+    titulo: "Spider-Man: Far from Home",
+    poster:
+      "https://blog.es.playstation.com/tachyon/sites/14/2022/06/adf0c6e3da060a9f9581c12eff047a48668fe616.jpg",
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <PeliculaIndividual pelicula={peliculaPrueba} />
+    </>
   );
 }
 
