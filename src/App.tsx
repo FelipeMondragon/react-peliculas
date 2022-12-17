@@ -4,6 +4,7 @@ import ListadoPeliculas from "./peliculas/ListadoPeliculas";
 // import PeliculaIndividual from "./peliculas/PeliculaIndividual";
 import { landingPageDTO } from "./peliculas/peliculas.model";
 import Button from "./utils/Button";
+import Menu from "./utils/Menu";
 
 function App() {
   const [peliculas, setPeliculas] = useState<landingPageDTO>({});
@@ -41,9 +42,8 @@ function App() {
 
   return (
     <>
+      <Menu />
       <div className="container">
-        <Button>Mi componente botón</Button>
-
         <h3>En Cartelera</h3>
         <ListadoPeliculas peliculas={peliculas.enCartelera} />
 
