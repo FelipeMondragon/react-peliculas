@@ -12,6 +12,26 @@ export default function Menu() {
                 Géneros
               </a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/peliculas/filtrar">
+                Películas Filtro
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/actores">
+                Actores
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/cines">
+                Cines
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/peliculas/crear">
+                Crear Películas
+              </a>
+            </li>
           </ul>
         </div>
       </div>
