@@ -1,0 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { StringSchema } from "yup";
+
+declare module 'yup' {
+    class StringSchema {
+        primeraLetraMayuscula():this;
+    }
+}
