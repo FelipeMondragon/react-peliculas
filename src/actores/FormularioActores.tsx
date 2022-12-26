@@ -3,6 +3,8 @@ import FormGroupText from "../utils/FormGroupText";
 import { actorCreacionDTO } from "./actores.model";
 import Button from "../utils/Button";
 import * as Yup from "yup";
+import FormGroupFecha from "../utils/FormGroupFecha";
+import FormGroupImagen from "../utils/FormGroupImagen";
 
 export default function FormularioActores(props: formularioActoresProps) {
   return (
@@ -13,11 +15,20 @@ export default function FormularioActores(props: formularioActoresProps) {
         nombre: Yup.string()
           .required("Este campo es requerido")
           .primeraLetraMayuscula(),
+        fechaNacimiento: Yup.date()
+          .nullable()
+          .required("Este campo es requerido"),
       })}
     >
       {(formikProps) => (
         <Form>
           <FormGroupText campo="nombre" label="Nombre" />
+          <FormGroupFecha label="Fecha Nacimiento" campo="fechaNacimiento" />
+          <FormGroupImagen
+            campo="foto"
+            label="Foto"
+            imagenURL={props.modelo.fotoURL}
+          />
           <Button disabled={formikProps.isSubmitting} type="submit">
             Salvar
           </Button>
