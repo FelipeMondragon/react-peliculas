@@ -5,6 +5,7 @@ import Button from "../utils/Button";
 import * as Yup from "yup";
 import FormGroupFecha from "../utils/FormGroupFecha";
 import FormGroupImagen from "../utils/FormGroupImagen";
+import FromGroupMarkdown from "../utils/FormGroupMarkdown";
 
 export default function FormularioActores(props: formularioActoresProps) {
   return (
@@ -29,6 +30,7 @@ export default function FormularioActores(props: formularioActoresProps) {
             label="Foto"
             imagenURL={props.modelo.fotoURL}
           />
+          <FromGroupMarkdown campo="biografia" label="Biografía" />
           <Button disabled={formikProps.isSubmitting} type="submit">
             Salvar
           </Button>
