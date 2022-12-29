@@ -1,6 +1,7 @@
 import { cineDTO } from "../cines/cines.model";
 import { generoDTO } from "../generos/genero.model";
 import FormularioPeliculas from "./FormularioPeliculas";
+import { actorPeliculaDTO } from "../actores/actores.model";
 
 export default function EditarPeliculas() {
   const generosNoSeleccionados: generoDTO[] = [
@@ -20,6 +21,14 @@ export default function EditarPeliculas() {
   ];
 
   const cinesSeleccionados: cineDTO[] = [{ id: 2, nombre: "Tangamanga" }];
+  const actoresSeleccionados: actorPeliculaDTO[] = [
+    {
+      id: 1,
+      nombre: "Ana de Armas",
+      personaje: "La IA sexy",
+      foto: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1139359898.jpg",
+    },
+  ];
 
   return (
     <>
@@ -29,6 +38,7 @@ export default function EditarPeliculas() {
         generosSeleccionados={generosSeleccionados}
         cinesNoSeleccionados={cinesNoSeleccionados}
         cinesSeleccionados={cinesSeleccionados}
+        actoresSeleccionados={actoresSeleccionados}
         modelo={{
           titulo: "Spider-Man",
           enCines: true,

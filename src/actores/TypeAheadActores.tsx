@@ -1,6 +1,7 @@
 import { Typeahead } from "react-bootstrap-typeahead";
 import { actorPeliculaDTO } from "./actores.model";
 import { ReactElement } from "react";
+import { useState } from "react";
 
 export default function TypeAheadActores(props: typeAheadActoresProps) {
   const actores: actorPeliculaDTO[] = [
@@ -25,6 +26,33 @@ export default function TypeAheadActores(props: typeAheadActoresProps) {
   ];
 
   const seleccion: actorPeliculaDTO[] = [];
+
+  const [elementoArrastrado, setElementoArrastrado] = useState<
+    actorPeliculaDTO | undefined
+  >(undefined);
+
+  function manejarDragStart(actor: actorPeliculaDTO) {
+    setElementoArrastrado(actor);
+  }
+
+  function manejarDragOver(actor: actorPeliculaDTO) {
+    if (!elementoArrastrado) {
+      return;
+    }
+
+    if (actor.id !== elementoArrastrado.id) {
+      const elementoArrastradoId = props.actores.findIndex(
+        (x) => x.id === elementoArrastrado.id
+      );
+
+      const actorId = props.actores.findIndex((x) => x.id === actor.id);
+
+      const actores = [...props.actores];
+      actores[actorId] = elementoArrastrado;
+      actores[elementoArrastradoId] = actor;
+      props.onAdd(actores);
+    }
+  }
 
   return (
     <>
@@ -56,9 +84,22 @@ export default function TypeAheadActores(props: typeAheadActoresProps) {
       />
       <ul className="list-group">
         {props.actores.map((actor) => (
-          <li className="list-group-item list-group-item-action" key={actor.id}>
+          <li
+            className="list-group-item list-group-item-action"
+            key={actor.id}
+            draggable={true}
+            onDragStart={() => manejarDragStart(actor)}
+            onDragOver={() => manejarDragOver(actor)}
+          >
             {" "}
             {props.listadoUI(actor)}{" "}
+            <span
+              className="badge badge-primary badge-pill pointer"
+              style={{ marginLeft: "0.5rem" }}
+              onClick={() => props.onRemove(actor)}
+            >
+              X
+            </span>
           </li>
         ))}
       </ul>
@@ -69,5 +110,6 @@ export default function TypeAheadActores(props: typeAheadActoresProps) {
 interface typeAheadActoresProps {
   actores: actorPeliculaDTO[];
   onAdd(actores: actorPeliculaDTO[]): void;
+  onRemove(actor: actorPeliculaDTO): void;
   listadoUI(actor: actorPeliculaDTO): ReactElement;
 }

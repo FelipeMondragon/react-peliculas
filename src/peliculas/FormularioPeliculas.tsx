@@ -32,7 +32,7 @@ export default function FormularioPeliculas(props: formularioPeliculasProps) {
 
   const [actoresSeleccionados, setActoresSeleccionados] = useState<
     actorPeliculaDTO[]
-  >([]);
+  >(props.actoresSeleccionados);
 
   function mapear(
     arreglo: { id: number; nombre: string }[]
@@ -48,6 +48,7 @@ export default function FormularioPeliculas(props: formularioPeliculasProps) {
       onSubmit={(valores, acciones) => {
         valores.generosIds = generosSeleccionados.map((valor) => valor.llave);
         valores.cinesIds = cinesSeleccionados.map((valor) => valor.llave);
+        valores.actores = actoresSeleccionados;
         props.onSubmit(valores, acciones);
       }}
       validationSchema={Yup.object({
@@ -94,7 +95,11 @@ export default function FormularioPeliculas(props: formularioPeliculasProps) {
           </div>
           <div className="form-group">
             <TypeAheadActores
-              onAdd={(actores) => {
+              onAdd={(actores: any) => {
+                setActoresSeleccionados(actores);
+              }}
+              onRemove={(actor: any) => {
+                const actores = actoresSeleccionados.filter((x) => x !== actor);
                 setActoresSeleccionados(actores);
               }}
               actores={actoresSeleccionados}
@@ -140,4 +145,5 @@ interface formularioPeliculasProps {
   generosNoSeleccionados: generoDTO[];
   cinesSeleccionados: cineDTO[];
   cinesNoSeleccionados: cineDTO[];
+  actoresSeleccionados: actorPeliculaDTO[];
 }
