@@ -1,3 +1,4 @@
+import { cineDTO } from "../cines/cines.model";
 import { generoDTO } from "../generos/genero.model";
 import FormularioPeliculas from "./FormularioPeliculas";
 
@@ -11,12 +12,23 @@ export default function EditarPeliculas() {
     { id: 3, nombre: "Terror" },
     { id: 4, nombre: "Comedia" },
   ];
+
+  const cinesNoSeleccionados: cineDTO[] = [
+    { id: 1, nombre: "El Dorado" },
+    { id: 3, nombre: "Macro Plaza" },
+    { id: 4, nombre: "The Park" },
+  ];
+
+  const cinesSeleccionados: cineDTO[] = [{ id: 2, nombre: "Tangamanga" }];
+
   return (
     <>
       <h3>Editar Película</h3>
       <FormularioPeliculas
         generosNoSeleccionados={generosNoSeleccionados}
         generosSeleccionados={generosSeleccionados}
+        cinesNoSeleccionados={cinesNoSeleccionados}
+        cinesSeleccionados={cinesSeleccionados}
         modelo={{
           titulo: "Spider-Man",
           enCines: true,
