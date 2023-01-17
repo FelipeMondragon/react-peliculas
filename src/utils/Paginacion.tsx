@@ -44,7 +44,29 @@ export default function Paginacion(props: paginacionProps) {
     setListadoLinks(links);
   }, [props.paginaActual, props.cantidadTotalDePaginas, props.radio]);
 
-  function obtenerClase(link: modeloLink) {}
+  function obtenerClase(link: modeloLink) {
+    if (link.activo) {
+      return "active pointer";
+    }
+
+    if (!link.habilitado) {
+      return "disabled";
+    }
+
+    return "pointer";
+  }
+
+  function seleccionarPagina(link: modeloLink) {
+    if (link.pagina === props.paginaActual) {
+      return;
+    }
+
+    if (!link.habilitado) {
+      return;
+    }
+
+    props.onChange(link.pagina);
+  }
 
   return (
     <nav>
@@ -52,10 +74,10 @@ export default function Paginacion(props: paginacionProps) {
         {listadoLinks.map((link) => (
           <li
             key={link.texto}
-            onClick={() => {}}
+            onClick={() => seleccionarPagina(link)}
             className={`page-item cursor ${obtenerClase(link)}`}
           >
-            {link.texto}
+            <span className="page-link">{link.texto}</span>
           </li>
         ))}
       </ul>
@@ -76,3 +98,7 @@ interface paginacionProps {
   radio: number;
   onChange(pagina: number): void;
 }
+
+Paginacion.defaultProps = {
+  radio: 3,
+};
