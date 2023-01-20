@@ -1,8 +1,34 @@
+import IndiceEntidad from "../utils/IndiceEntidad";
+import { actorDTO } from "./actores.model";
+
 export default function IndiceActores() {
   return (
     <>
-      <h3>Indice Actores</h3>
-      <a href="actores/crear">Crear Actor</a>
+      <IndiceEntidad<actorDTO>
+        url="https://localhost:7088/api/actores"
+        urlCrear="actores/crear"
+        titulo="Actores"
+        nombreEntidad="Actor"
+      >
+        {(actores, botones) => (
+          <>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Nombre</th>
+              </tr>
+            </thead>
+            <tbody>
+              {actores?.map((actor) => (
+                <tr key={actor.id}>
+                  <td> {botones(`actores/editar/${actor.id}`, actor.id)} </td>
+                  <td>{actor.nombre}</td>
+                </tr>
+              ))}
+            </tbody>
+          </>
+        )}
+      </IndiceEntidad>
     </>
   );
 }
