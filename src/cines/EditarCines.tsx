@@ -1,18 +1,21 @@
 import FormularioCines from "./FormularioCines";
+import { cineCreacionDTO, cineDTO } from "./cines.model";
+import EditarEntidad from "../utils/EditarEntidad";
 
 export default function EditarCines() {
   return (
-    <>
-      Editar Cines
-      <FormularioCines
-        modelo={{ nombre: "Sambil", latitud: 22.163773, longitud: -100.977371 }}
-        onSubmit={(valores) =>
-          console.log(
-            "🚀 ~ file: CrearCines.tsx:8 ~ CrearCines ~ valores",
-            valores
-          )
-        }
-      />
-    </>
+    <EditarEntidad<cineCreacionDTO, cineDTO>
+      url="https://localhost:7088/api/cines"
+      nombreEntidad="Cines"
+    >
+      {(entidad, editar) => (
+        <FormularioCines
+          modelo={entidad}
+          onSubmit={async (valores) => {
+            await editar(valores);
+          }}
+        />
+      )}
+    </EditarEntidad>
   );
 }
