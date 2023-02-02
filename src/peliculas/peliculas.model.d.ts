@@ -1,4 +1,6 @@
 import { actorPeliculaDTO } from "../actores/actores.model";
+import { generoDTO } from "../generos/genero.model";
+import { cineDTO } from "../cines/cines.model";
 export interface pelicula {
   id: number;
   titulo: string;
@@ -9,6 +11,7 @@ export interface peliculaCreacionDTO {
   titulo: string;
   enCines: boolean;
   trailer: string;
+  resumen?: string;
   fechaLanzamiento?: Date;
   poster?: File;
   posterURL?: string;
@@ -20,4 +23,9 @@ export interface peliculaCreacionDTO {
 export interface landingPageDTO {
   enCartelera?: pelicula[];
   proximosEstrenos?: pelicula[];
+}
+
+export interface peliculasPostGetDTO {
+  generos: generoDTO[];
+  cines: cineDTO[];
 }

@@ -14,6 +14,7 @@ import { useState } from "react";
 import { cineDTO } from "../cines/cines.model";
 import TypeAheadActores from "../actores/TypeAheadActores";
 import { actorPeliculaDTO } from "../actores/actores.model";
+import FromGroupMarkdown from "../utils/FormGroupMarkdown";
 
 export default function FormularioPeliculas(props: formularioPeliculasProps) {
   const [generosSeleccionados, setGenerosSeleccionados] = useState(
@@ -71,6 +72,7 @@ export default function FormularioPeliculas(props: formularioPeliculasProps) {
             campo="poster"
             imagenURL={props.modelo.posterURL}
           />
+          <FromGroupMarkdown campo="resumen" label="resumen" />
           <div className="form-group">
             <label> Géneros: </label>
             <SelectorMultiple
